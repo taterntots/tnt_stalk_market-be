@@ -3,15 +3,24 @@
 module.exports = {
 
   development: {
-    client: 'pg',
-    connection: process.env.DB_DEV,
+    client: 'sqlite3',
+    connection: {
+      filename: './data/catalogue.db3'
+    },
+    useNullAsDefault: true,
     migrations: {
       directory: './data/migrations'
     },
     seeds: {
       directory: './data/seeds'
     },
-    useNullAsDefault: true
+    // SQLite will not enforce foreign key constraints by default
+    // ONLY NEEDED FOR SQLITE
+    pool: {
+      afterCreate: (conn, done) => {
+        conn.run("PRAGMA foreign_keys = ON", done); // turn on foreign key enforcement
+      }
+    }
   },
 
   production: {
