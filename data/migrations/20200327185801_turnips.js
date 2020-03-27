@@ -8,11 +8,11 @@ exports.up = function (knex, Promise) {
       .integer('afternoon_price')
       .notNullable();
     tbl
-      .integer('user_id')
+      .integer('villager_id')
       .unsigned()
       .notNullable()
       .references('id')
-      .inTable('users')
+      .inTable('villagers')
       .onUpdate('CASCADE')
       .onDelete('CASCADE');
   });
