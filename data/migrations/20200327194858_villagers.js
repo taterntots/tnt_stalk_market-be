@@ -5,7 +5,9 @@ exports.up = function (knex, Promise) {
       .string('villager_name')
       .notNullable();
     tbl
-      .string('island_name')
+      .string('island_name', 10)
+      .notNullable();
+    tbl.string('password')
       .notNullable();
   });
 };

@@ -15,6 +15,14 @@ exports.up = function (knex, Promise) {
       .inTable('villagers')
       .onUpdate('CASCADE')
       .onDelete('CASCADE');
+    tbl
+      .integer('island_id')
+      .unsigned()
+      .notNullable()
+      .references('id')
+      .inTable('villagers')
+      .onUpdate('CASCADE')
+      .onDelete('CASCADE');
   });
 };
 
