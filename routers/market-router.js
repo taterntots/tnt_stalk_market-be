@@ -14,7 +14,7 @@ router.get('/', (req, res) => {
     });
 });
 
-//***************** ADD NEW REVIEW *******************//
+//***************** ADD NEW TURNIP *******************//
 router.post(
   '/:villagerId/add-turnip-price', (req, res) => {
     const { villagerId } = req.params;
