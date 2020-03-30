@@ -11,6 +11,7 @@ server.use(cors()); //middleware that allows cross domain communication from the
 server.use(morgan('tiny')); //logger middleware
 
 //Router Imports
+const authRouter = require('../routers/auth-router.js');
 const marketRouter = require('../routers/market-router.js');
 
 //endpoints
@@ -22,6 +23,7 @@ server.get('/', (req, res) => {
 });
 
 //routes with Auth applied
+server.use('/api/auth', authRouter);
 server.use('/api/market', marketRouter);
 
 module.exports = server;
