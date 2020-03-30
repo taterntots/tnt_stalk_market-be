@@ -3,12 +3,15 @@ const helmet = require('helmet');
 const cors = require('cors');
 const morgan = require('morgan'); //for logging middleware
 const server = express(); //creates the server
-//
+
 //global middleware
 server.use(express.json()); //middleware needed to parse JSON
 server.use(helmet()); //middleware that adds a layer of security to the server
 server.use(cors()); //middleware that allows cross domain communication from the browser
 server.use(morgan('tiny')); //logger middleware
+
+//Auth middleware
+const { restricted } = require('../middleware/index.js');
 
 //Router Imports
 const authRouter = require('../routers/auth-router.js');
@@ -25,7 +28,7 @@ server.get('/', (req, res) => {
 
 //routes with Auth applied
 server.use('/api/auth', authRouter);
-server.use('/api/villagers', villagersRouter);
-server.use('/api/market', marketRouter);
+server.use('/api/villagers', restricted, villagersRouter);
+server.use('/api/market', restricted, marketRouter);
 
 module.exports = server;
