@@ -1,9 +1,9 @@
 const router = require('express').Router();
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-
+// imports
 const Villager = require('../helpers/villagers-model.js');
-
+// token
 const { jwtSecret } = require('../config/secret.js');
 
 /**************************************************************************/
@@ -20,8 +20,8 @@ router.post('/register', (req, res) => {
   Villager.addVillager(villager)
     .then(newVillager => {
       const token = signToken(newVillager);
-      const { villager_name, id } = newVillager;
-      res.status(201).json({ villager_name, token, id });
+      const { id, villager_name, island_name } = newVillager;
+      res.status(201).json({ villager_name, island_name, token, id });
     })
     .catch(err => {
       res.status(500).json({ error: 'There was an error signing up.' });
@@ -39,9 +39,9 @@ router.post('/login', (req, res) => {
     .then(villager => {
       if (villager && bcrypt.compareSync(password, villager.password)) {
         const token = signToken(villager);
-        const { id, villager_name } = villager;
+        const { id, villager_name, island_name } = villager;
 
-        res.status(200).json({ villager_name, token, id });
+        res.status(200).json({ villager_name, island_name, token, id });
       } else {
         res.status(401).json({ message: 'Invalid Credentials' });
       }
