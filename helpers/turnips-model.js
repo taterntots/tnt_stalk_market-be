@@ -2,11 +2,11 @@ const db = require('../data/dbConfig');
 
 module.exports = {
   findTurnips,
-  findTurnipPriceById,
-  addTurnipPrice
+  findTurnipById,
+  addTurnip
 };
 
-// FIND ALL TURNIPS
+// FIND ALL TURNIP PRICES
 function findTurnips() {
   return db('turnips as t')
     .select(
@@ -34,17 +34,23 @@ function findTurnips() {
 //     .first();
 // }
 
-function findTurnipPriceById(id) {
-  return db('turnips')
-    .where({ id }, turnId)
+// FIND TURNIP PRICE BY ID
+function findTurnipById(turnipId) {
+  return db('turnips as t')
+  .select(
+    't.id as turnip_id',
+    't.morning_price',
+    't.afternoon_price'
+  )
+    .where('t.id', turnipId)
     .first();
 }
 
 // ADD A TURNIP PRICE
-function addTurnipPrice(newTurnipPrice) {
+function addTurnip(newTurnip) {
   return db('turnips')
-    .insert(newTurnipPrice, 'id')
+    .insert(newTurnip, 'id')
     .then(([id]) => {
-      return findTurnipPriceById(id);
+      return findTurnipById(id);
     });
 }

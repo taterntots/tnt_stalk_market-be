@@ -15,7 +15,7 @@ function restricted(req, res, next) {
         //i.e: the token is not valid
         res.status(401).json({ errorMessage: 'The provided token is invalid / expired' });
       } else {
-        req.user = { id: decodedToken.id, email: decodedToken.email };
+        req.villager = { id: decodedToken.id };
         next();
       }
     });
