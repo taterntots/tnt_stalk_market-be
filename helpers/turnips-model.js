@@ -16,7 +16,8 @@ function findTurnips() {
       't.morning_price',
       't.afternoon_price'
     )
-    .join('villagers as v', 'v.id', 't.villager_id');
+    .join('villagers as v', 'v.id', 't.villager_id')
+    .orderBy('t.morning_price', 'desc');
 }
 
 // FIND TURNIP PRICE BY ID
@@ -37,11 +38,11 @@ function findTurnips() {
 // FIND TURNIP PRICE BY ID
 function findTurnipById(turnipId) {
   return db('turnips as t')
-  .select(
-    't.id as turnip_id',
-    't.morning_price',
-    't.afternoon_price'
-  )
+    .select(
+      't.id as turnip_id',
+      't.morning_price',
+      't.afternoon_price'
+    )
     .where('t.id', turnipId)
     .first();
 }
