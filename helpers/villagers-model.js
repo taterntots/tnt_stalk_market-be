@@ -17,7 +17,7 @@ function findVillagersBy(filter) {
   return db('villagers').where(filter);
 }
 
-// FIND VILLAGER BY ID, WILL CONTAIN ANY REVIEWS ASSOCIATED WITH THE Villager OR AN EMPTY ARRAY
+// FIND VILLAGER BY ID
 function findVillagerById(villagerId) {
   return db('villagers as v')
     .where('id', villagerId)
@@ -25,7 +25,7 @@ function findVillagerById(villagerId) {
     .first();
 }
 
-// ADD A Villager TO THE DATABASE
+// ADD A VILLAGER TO THE DATABASE
 
 function addVillager(villager) {
   return db('villagers')

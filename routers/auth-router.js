@@ -15,8 +15,8 @@ const { jwtSecret } = require('../config/secret.js');
 router.post('/register', (req, res) => {
   let villager = req.body;
   const hash = bcrypt.hashSync(villager.password, 3);
-
   villager.password = hash;
+
   Villager.addVillager(villager)
     .then(newVillager => {
       const token = signToken(newVillager);
@@ -24,6 +24,8 @@ router.post('/register', (req, res) => {
       res.status(201).json({ villager_name, island_name, token, id });
     })
     .catch(err => {
+      console.log('LOOK HERE', err)
+
       res.status(500).json({ error: 'There was an error signing up.' });
     });
 });
