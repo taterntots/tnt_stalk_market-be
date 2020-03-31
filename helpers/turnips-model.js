@@ -17,7 +17,8 @@ function findTurnips() {
       't.afternoon_price'
     )
     .join('villagers as v', 'v.id', 't.villager_id')
-    .orderBy('t.morning_price', 't.afternoon_price', 'desc');
+    .orderBy('t.morning_price', 'desc')
+    .orderBy('t.afternoon_price', 'desc');
 }
 
 // FIND TURNIP PRICE BY ID
