@@ -13,6 +13,10 @@ exports.up = function (knex, Promise) {
       .inTable('villagers')
       .onUpdate('CASCADE')
       .onDelete('CASCADE');
+    tbl
+      .timestamp('created_at')
+      .notNullable()
+      .defaultTo(knex.fn.now());
   });
 };
 
