@@ -28,7 +28,6 @@ router.post('/:villagerId/add-turnip-price', (req, res) => {
   let turnip = req.body;
   turnip = { ...turnip, villager_id: villagerId };
 
-  console.log(`LOOK HERE`, villagerId)
   if (Number(req.villager.id) === Number(villagerId)) {
     Turn.addTurnip(turnip)
       .then(newturnip => {
