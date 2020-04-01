@@ -21,44 +21,44 @@ router.get('/all', (req, res) => {
 /**************************************************************************/
 
 //***************** ADD NEW TURNIP *******************//
-// router.post(
-//   '/:villagerId/add-turnip-price', (req, res) => {
-//     const { villagerId } = req.params;
-//     let turnips = req.body;
-//     turnips = { ...turnips, villager_id: villagerId };
 
-//     Turn.addTurnip = (turnips)
-//       .then(newTurnip => {
-//         res.status(201).json(newTurnip);
-//       })
-//       .catch(err => {
-//         res.status(500).json({ error: 'There was an error adding the turnip price' });
-//       });
-//   }
-// );
+router.post('/:villagerId/add-turnip-price', (req, res) => {
+  const { villagerId } = req.params;
 
-router.post(
-  '/:villagerId/add-turnip-price', (req, res) => {
-    const { villagerId } = req.params;
+  let turnip = req.body;
+  turnip = { ...turnip, villager_id: villagerId };
 
-    let turnip = req.body;
-    turnip = { ...turnip, villager_id: villagerId };
-
-    console.log(`LOOK HERE`, villagerId)
-    if (Number(req.villager.id) === Number(villagerId)) {
-      Turn.addTurnip(turnip)
-        .then(newturnip => {
-          res.status(201).json(newturnip);
-        })
-        .catch(err => {
-          res.status(500).json({
-            error: 'There was an error. Check id or turnip fields'
-          });
+  console.log(`LOOK HERE`, villagerId)
+  if (Number(req.villager.id) === Number(villagerId)) {
+    Turn.addTurnip(turnip)
+      .then(newturnip => {
+        res.status(201).json(newturnip);
+      })
+      .catch(err => {
+        res.status(500).json({
+          error: 'There was an error. Check id or turnip fields'
         });
-    } else {
-      return res.status(404).json({ error: 'Wrong villager' });
-    }
+      });
+  } else {
+    return res.status(404).json({ error: 'Wrong villager' });
   }
+}
+);
+
+//************* DELETE A TURNIP PRICE BY USER ID ***************//
+
+router.delete('/:villagerId/turnips/:turnipId', (req, res) => {
+  const { turnipId } = req.params;
+  Turn.deleteTurnip(turnipId)
+    .then(deleted => {
+      res.status(200).json(deleted);
+    })
+    .catch(err => {
+      res.status(500).json({
+        error: 'Was not able to delete the turnip price'
+      });
+    });
+}
 );
 
 /**************************************************************************/

@@ -3,7 +3,8 @@ const db = require('../data/dbConfig');
 module.exports = {
   findTurnips,
   findTurnipById,
-  addTurnip
+  addTurnip,
+  deleteTurnip
 };
 
 // FIND ALL TURNIP PRICES
@@ -55,4 +56,11 @@ function addTurnip(newTurnip) {
     .then(([id]) => {
       return findTurnipById(id);
     });
+}
+
+// DELETE AN EXISTING TURNIP PRICE
+function deleteTurnip(id) {
+  return db('turnips')
+    .where({ id })
+    .del();
 }
