@@ -12,6 +12,7 @@ function findTurnips() {
   return db('turnips as t')
     .select(
       't.id as turnip_id',
+      'v.id as villager_id',
       'v.villager_name',
       'v.island_name',
       't.morning_price',
