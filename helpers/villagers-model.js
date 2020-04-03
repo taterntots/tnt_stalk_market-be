@@ -9,7 +9,12 @@ module.exports = {
 
 // FIND ALL VILLAGERS
 function findVillagers() {
-  return db('villagers');
+  return db('villagers as v')
+    .select(
+      'v.id as villager_id',
+      'v.villager_name',
+      'v.island_name'
+    )
 }
 
 // FIND VILLAGER BY A SPECIFIC FILTER (MUST BE A COLUMN IN THE VILLAGERS TABLE AND USE {<ARGUMENT>})
