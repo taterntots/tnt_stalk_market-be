@@ -17,7 +17,8 @@ function findTurnips() {
       'v.island_name',
       't.morning_price',
       't.afternoon_price',
-      't.created_at'
+      't.created_at',
+      't.created_date'
     )
     .join('villagers as v', 'v.id', 't.villager_id')
     .orderBy('t.morning_price', 'desc')
@@ -46,7 +47,8 @@ function findTurnipById(turnipId) {
       't.id as turnip_id',
       't.morning_price',
       't.afternoon_price',
-      't.created_at'
+      't.created_at',
+      't.created_date'
     )
     .where('t.id', turnipId)
     .first();
