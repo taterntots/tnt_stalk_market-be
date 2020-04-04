@@ -65,7 +65,7 @@ function signToken(villager) {
   };
 
   const options = {
-    expiresIn: '8h'
+    // expiresIn: '8h'
   };
   return jwt.sign(payload, jwtSecret, options);
 }
