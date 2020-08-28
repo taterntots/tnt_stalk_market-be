@@ -117,7 +117,7 @@ or
 
 `findTurnipById(turnipId)` -> Returns all data (pricing) for a single turnip by ID.
 
-`addTurnip(newTurnip)` --> Creates a new turnip price and returns that price. If the turnip already exists it will be overwritten.
+`addTurnip(newTurnip)` --> Creates a new turnip price and returns that price.
 
 `deleteTurnip(id)` -> Deletes the single turnip and all its data.
 <br>
