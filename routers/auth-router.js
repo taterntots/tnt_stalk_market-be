@@ -24,8 +24,7 @@ router.post('/register', (req, res) => {
       res.status(201).json({ villager_name, island_name, token, id });
     })
     .catch(err => {
-      console.log('LOOK HERE', err)
-
+      console.log(err)
       res.status(500).json({ error: 'There was an error signing up.' });
     });
 });

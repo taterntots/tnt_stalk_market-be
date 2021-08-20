@@ -3,6 +3,7 @@ const helmet = require('helmet');
 const cors = require('cors');
 const morgan = require('morgan'); //for logging middleware
 const server = express(); //creates the server
+require('dotenv').config(); //Lets us use environmental variables
 
 //global middleware
 server.use(express.json()); //middleware needed to parse JSON
